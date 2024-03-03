@@ -1,0 +1,158 @@
+<%-include('nav', {user: user})%>
+
+    <div id="container">
+
+
+        <!-- Create or Update Job posting -->
+
+        <div class="container">
+            <h3 class="mb-3 mt-5 text-center">Post New Job</h3>
+
+            <% if(errMsgs){ %>
+                <div class="alert alert-danger" role="alert">
+                    <ul>
+                        <% errMsgs.forEach( err=> { %>
+                            <li>
+                                <%= err.msg %>
+                            </li>
+                            <% }) %>
+                    </ul>
+                </div>
+
+                <% } %>
+
+                    <form action="/jobs" method="post" enctype="multipart/form-data">
+                        <div class="input-group mb-3">
+                            <select class="form-select" name="category">
+                                <option selected>Select Job category</option>
+                                <option value="Tech">Tech</option>
+                                <option value="Non Tech">Non Tech</option>
+                            </select>
+                        </div>
+                        <div class="input-group mb-3">
+                            <select class="form-select" name="designation" aria-label="Default select example">
+                                <option selected>Select Job designation</option>
+                                <option value="HR">HR</option>
+                                <option value="SDE">SDE</option>
+                                <option value="DevOps">DevOps</option>
+                                <option value="MERN Developer">MERN Developer</option>
+                                <option value="MEAN Developer">MEAN Developer</option>
+                                <option value="Java Developer">Java Developer</option>
+                                <option value="Frontend Developer">Frontend Developer</option>
+                                <option value="Backend Developer">Backend Developer</option>
+                                <option value="Fullstack Developer">Fullstack Developer</option>
+                            </select>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="form-floating">
+                                <textarea class="form-control" placeholder="Enter the location" name="location"
+                                    id="location"></textarea>
+                                <label for="location">Enter job location</label>
+                            </div>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Company Name</span>
+                            <input type="text" name="cmpName" placeholder="Enter company name" class="form-control">
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Enter Salary & No. of Positions</span>
+                            <input type="text" name="salary" placeholder="Enter salary" class="form-control">
+                            <input type="text" name="noOfPos" placeholder="Enter number of positions"
+                                class="form-control">
+                        </div>
+
+                        <div class="d-flex input-group mb-3">
+                            <div class="d-flex">
+                                <span class="input-group-text col-xl=3">Check skills required for the job</span>
+                            </div>
+
+                            <div class="d-flex flex-wrap justify-content-evenly col-xl-9">
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="JavaScript" value="JavaScript"
+                                        name="skills">
+                                    <label class="form-check-label" for="JavaScript">
+                                        JavaScript
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="Java" value="Java"
+                                        name="skills">
+                                    <label class="form-check-label" for="Java">
+                                        Java
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="React" value="React"
+                                        name="skills">
+                                    <label class="form-check-label" for="React">
+                                        React
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="NodeJS" value="NodeJS"
+                                        name="skills">
+                                    <label class="form-check-label" for="NodeJS">
+                                        NodeJS
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="Angular" value="Angular"
+                                        name="skills">
+                                    <label class="form-check-label" for="Angular">
+                                        Angular
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="MongoDB" value="MongoDB"
+                                        name="skills">
+                                    <label class="form-check-label" for="MongoDB">
+                                        MongoDB
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="Express" value="Express"
+                                        name="skills">
+                                    <label class="form-check-label" for="Express">
+                                        Express
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="AWS" value="AWS" name="skills">
+                                    <label class="form-check-label" for="AWS">
+                                        AWS
+                                    </label>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="input-group mb-3 d-flex justify-content-evenly">
+                            <div class="d-flex">
+                                <span class="input-group-text me-3"> Apply By </span>
+                                <input type="date" id="applyby" name="lastDate" placeholder="Apply By">
+                            </div>
+                            <div class="d-flex">
+                                <span class="input-group-text me-3"> Upload Image </span>
+                                <input type="file" name="imageUrl" accept="images/*">
+                            </div>
+                        </div>
+
+                        <input type="hidden" name="postedBy" value="<%= user %>">
+                        <% const d = new Date(); %>
+                        <input type="hidden" name="postedOn" value="<%= d.toISOString() %>">
+                        
+                        <div class="input-group mb-3 justify-content-center">
+                            <input type="submit" class="btn btn-primary" value="Post Job">
+                        </div>
+
+                    </form>
+        </div>
+
+
+    </div>

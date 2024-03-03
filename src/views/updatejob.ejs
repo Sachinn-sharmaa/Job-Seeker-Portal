@@ -1,0 +1,177 @@
+<!-- Create or Update Job posting -->
+
+<%-include('nav', {user: user})%>
+
+    <div id="container">
+
+
+        <div class="container">
+            <h3 class="mb-3 mt-5 text-center">Update Job</h3>
+
+            <% if(errMsgs){ %>
+                <div class="alert alert-danger" role="alert">
+                    <ul>
+                        <% errMsgs.forEach( err=> { %>
+                            <li>
+                                <%= err.msg %>
+                            </li>
+                            <% }) %>
+                    </ul>
+                </div>
+
+                <% } %>
+
+                    <form action="/jobdetails/<%= job.id %>" method="post" enctype="multipart/form-data">
+                        <div class="input-group mb-3">
+                            <select class="form-select" name="category">
+                                <option selected>Select Job category</option>
+                                <option value="Tech" <%=job.category=='Tech' ? 'selected' : '' %> >Tech</option>
+                                <option value="Non Tech" <%=job.category=='Non Tech' ? 'selected' : '' %> >Non Tech
+                                </option>
+                            </select>
+                        </div>
+                        <div class="input-group mb-3">
+                            <select class="form-select" name="designation" aria-label="Default select example">
+                                <option selected>Select Job designation</option>
+                                <option value="HR" <%=job.designation=='HR' ? 'selected' : '' %>>HR</option>
+                                <option value="SDE" <%=job.designation=='SDE' ? 'selected' : '' %>>SDE</option>
+                                <option value="DevOps" <%=job.designation=='DevOps' ? 'selected' : '' %>>DevOps</option>
+                                <option value="MERN Developer" <%=job.designation=='MERN Developer' ? 'selected' : '' %>
+                                    >MERN
+                                    Developer</option>
+                                <option value="MEAN Developer" <%=job.designation=='MEAN Developer' ? 'selected' : '' %>
+                                    >MEAN
+                                    Developer</option>
+                                <option value="Java Developer" <%=job.designation=='Java Developer' ? 'selected' : '' %>
+                                    >Java
+                                    Developer</option>
+                                <option value="Frontend Developer" <%=job.designation=='Frontend Developer' ? 'selected'
+                                    : '' %>
+                                    >Frontend Developer</option>
+                                <option value="Backend Developer" <%=job.designation=='Backend Developer' ? 'selected'
+                                    : '' %>
+                                    >Backend Developer</option>
+                                <option value="Fullstack Developer" <%=job.designation=='Fullstack Developer'
+                                    ? 'selected' : '' %>>Fullstack Developer</option>
+                            </select>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="form-floating">
+                                <textarea class="form-control" placeholder="Enter the location" name="location"
+                                    id="location"><%= job.location %></textarea>
+                                <label for="location">Enter job location</label>
+                            </div>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Company Name</span>
+                            <input type="text" name="cmpName" placeholder="Enter company name" class="form-control"
+                                value="<%= job.cmpName %>">
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Enter Salary & No. of Positions</span>
+                            <input type="text" name="salary" placeholder="Enter salary" class="form-control"
+                                value="<%= job.salary %>">
+                            <input type="text" name="noOfPos" placeholder="Enter number of positions"
+                                class="form-control" value="<%= job.noOfPos %>">
+                        </div>
+
+                        <div class="d-flex input-group mb-3">
+                            <div class="d-flex">
+                                <span class="input-group-text col-xl=3">Check skills required for the job</span>
+                            </div>
+
+                            <div class="d-flex flex-wrap justify-content-evenly col-xl-9">
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="JavaScript" value="JavaScript"
+                                        name="skills" <%=job.skills.includes('JavaScript') ? 'checked' : '' %>>
+                                    <label class="form-check-label" for="JavaScript">
+                                        JavaScript
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="Java" value="Java" name="skills"
+                                        <%=job.skills.includes('Java') ? 'checked' : '' %>>
+                                    <label class="form-check-label" for="Java">
+                                        Java
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="React" value="React"
+                                        name="skills" <%=job.skills.includes('React') ? 'checked' : '' %>>
+                                    <label class="form-check-label" for="React">
+                                        React
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="NodeJS" value="NodeJS"
+                                        name="skills" <%=job.skills.includes('NodeJS') ? 'checked' : '' %>>
+                                    <label class="form-check-label" for="NodeJS">
+                                        NodeJS
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="Angular" value="Angular"
+                                        name="skills" <%=job.skills.includes('Angular') ? 'checked' : '' %>>
+                                    <label class="form-check-label" for="Angular">
+                                        Angular
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="MongoDB" value="MongoDB"
+                                        name="skills" <%=job.skills.includes('MongoDB') ? 'checked' : '' %>>
+                                    <label class="form-check-label" for="MongoDB">
+                                        MongoDB
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="Express" value="Express"
+                                        name="skills" <%=job.skills.includes('Express') ? 'checked' : '' %>>
+                                    <label class="form-check-label" for="Express">
+                                        Express
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="AWS" value="AWS" name="skills"
+                                        <%=job.skills.includes('AWS') ? 'checked' : '' %>>
+                                    <label class="form-check-label" for="AWS">
+                                        AWS
+                                    </label>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="input-group mb-3 d-flex justify-content-evenly">
+                            <div class="d-flex">
+                                <span class="input-group-text me-3"> Apply By </span>
+                                <input type="date" id="applyby" name="lastDate" placeholder="Apply By"
+                                    value="<%= job.lastDate %>">
+                            </div>
+                            <div class="d-flex">
+                                <span class="input-group-text me-3"> Upload Image </span>
+                                <input type="file" id="uploadImg" name="imageUrl" accept="images/*"
+                                    value="<%= job.imageUrl %>">
+                            </div>
+                        </div>
+
+                        <input type="hidden" name="postedBy" value="<%= user %>">
+                        <% const d = new Date(); %>
+                        <input type="hidden" name="postedOn" value="<%= d.toISOString() %>">
+
+                        <div class="input-group mb-3 justify-content-center">
+                            <input type="submit" class="btn btn-primary" value="Update Job">
+                        </div>
+
+                    </form>
+
+        </div>
+
+
+
+    </div>

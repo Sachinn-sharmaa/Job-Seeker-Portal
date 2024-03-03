@@ -1,0 +1,131 @@
+#container{
+    min-height: 100vh;
+    background-color: #e3f2fd;
+}
+
+.hide{
+    display: none;
+}
+
+.primary{
+    color: #e2b616;
+}
+
+.secondary{
+    color: #e3f2fd;
+}
+
+.tertiary{
+    color: #3FAA85;
+}
+
+.fourth{
+    color: #273c4d;
+}
+
+
+.secondary-bg{
+    background-color: #e3f2fd;
+}
+
+.tertiary-bg{
+    background-color: #3FAA85;
+    color: white;
+    cursor: default;
+    border: none;
+    border-radius: 0%;
+}
+
+.tertiary-bg:hover{
+    background-color: #3FAA85;
+    color: white;
+    cursor: default;
+}
+
+.tertiary-bg:active{
+    background-color: #3FAA85 !important;
+    color: white;
+    cursor: default;
+}
+
+.primary-bg{
+    background-color: #e2b616;
+    color: black;
+    font-weight: bolder;
+    border: none;
+    margin-bottom: 10px;
+    cursor: default;
+}
+
+.primary-bg:hover{
+    background-color: #e2b616;
+    color: black;
+    font-weight: bolder;
+    border: none;
+    margin-bottom: 10px;
+    cursor: default;
+
+}
+
+.primary-bg:active{
+    background-color: #e2b616 !important;
+    color: black;
+    font-weight: bolder;
+    border: none;
+    margin-bottom: 10px;
+    cursor: default;
+}
+
+.primary-b{
+    color: #e2b616;
+    font-weight: bold;
+}
+
+.card-style{
+    max-width: 18rem;
+}
+
+.clickable-card{
+    height: 300px;
+    width: 300px;
+    cursor: pointer;
+}
+
+.clickable-card:hover{
+    background-color: #FAF9F6 !important;
+}
+
+
+
+.img-size{
+    height: 150px;
+    width: 150px;
+    object-fit: contain;
+}
+
+#applicant{
+    text-decoration: none;
+}
+
+.jobs-card-link{
+    text-decoration: none;
+}
+
+.prevent-overflow {
+    height: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.prevent-overflow-div{
+    height: 30px;
+    overflow: hidden;
+}
+
+.prevent-overflow-head{
+    height: 50px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

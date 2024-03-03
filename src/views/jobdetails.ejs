@@ -1,0 +1,145 @@
+<%-include('nav', {user: user})%>
+
+    <div id="container">
+
+        <!-- Job Details Page -->
+
+        <div class="container p-5">
+            <div class="card text-center mt-5">
+                <div class="card-header">
+                    Job Details
+                </div>
+                <div class="card-body">
+
+                    <div class="card mb-3">
+                        <div class="row">
+                            <div class="col-md-4 p-3">
+                                <img src="<%= job.imageUrl  %>" class="img-fluid rounded img-size" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h1 class="card-title prevent-overflow-head"><span class="tertiary">
+                                            <%= job.category %>
+                                        </span> Oppertunity at <span class="primary-b">
+                                            <%= job.cmpName %>
+                                        </span></h1>
+                                    <p class="card-text">
+                                        <%= job.category %><span class="text-primary">
+                                                <%= job.designation %>
+                                            </span>
+                                    </p>
+                                </div>
+                                <div>
+                                    <button type="button" class="btn btn-sm tertiary-bg">Actively Hiring
+                                        &nbsp;&nbsp;&nbsp;<i class="fa-solid fa-chart-line"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <ul class="list-group text-start">
+                        <li class="list-group-item"><i class="fa-solid fa-location-dot tertiary">&nbsp;&nbsp;</i>
+                            <%= job.location %>
+                        </li>
+                        <li class="list-group-item"><i class="fa-solid fa-indian-rupee-sign tertiary"></i>
+                            <%= job.salary %>
+                        </li>
+                        <li class="list-group-item"><i class="fa-solid fa-hourglass-start tertiary"></i> Apply by
+                            <span>
+                                <%= job.lastDate %>
+                            </span>
+                        </li>
+                        <li class="list-group-item"><i class="fa-solid fa-bars tertiary"></i> Number of openings
+                            <span>
+                                <%= job.noOfPos %>
+                            </span>
+                        </li>
+                        <% if(user && user==job.postedBy) { %>
+
+                            <li class="list-group-item"><a id="applicant" href="/applicants/<%= job.id %>"><i
+                                        class="fa-solid fa-users text-primary"></i>
+                                        
+                                    Applicants <span>
+                                        <%= applicants %>
+                                    </span></a></li>
+
+                            <% } else { %>
+                                <li class="list-group-item"><a id="applicant" href="/404"><i
+                                            class="fa-solid fa-users text-primary"></i>
+                                        Applicants <span>
+                                            <%= applicants %>
+                                        </span></a></li>
+
+                                <% } %>
+
+                                    <li class="list-group-item">
+                                        <div>
+                                            <% job.skills.forEach( skill=> { %>
+                                                <button type="button" class="btn btn-sm primary-bg">
+                                                    <%= skill %>
+                                                </button>
+                                                <% }); %>
+                                        </div>
+                                    </li>
+                    </ul>
+
+                    <% if(user && user==job.postedBy ) { %>
+                        <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal"
+                            data-bs-target="#apply">Apply</button>
+                        <a href="/updatejob/<%= job.id %>" class="btn btn-warning mt-3">Update</a>
+                        <button class="btn btn-danger mt-3" onclick="deleteJob('<%= job.id %>')">Delete</button>
+
+                        <% } else{ %>
+                            <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal"
+                                data-bs-target="#apply">Apply</button>
+                            <% } %>
+
+
+                </div>
+                <div class="card-footer text-body-secondary">
+                    Posted <%= job.postedOn  %>
+                </div>
+            </div>
+            <!-- Application form modal -->
+
+            <div class="modal fade" id="apply" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Job Application</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="/apply" method="post" enctype="multipart/form-data">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">Name</span>
+                                    <input type="text" name="name" placeholder="Enter your Name" class="form-control"
+                                        required>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">Email</span>
+                                    <input type="email" name="email" placeholder="Enter your Email" class="form-control"
+                                        required>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">Phone Number</span>
+                                    <input type="number" name="phone" placeholder="Enter your Phone Number"
+                                        class="form-control" required>
+                                </div>
+                                <input type="hidden" name="cmpId" value="<%= job.id %>">
+                                <div class="input-group mb-3">
+                                    <input type="file" name="resume" class="form-control" required>
+                                </div>
+
+                                <div class="input-group mb-3 justify-content-center">
+                                    <input type="submit" class="btn btn-primary" value="Submit Application">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>

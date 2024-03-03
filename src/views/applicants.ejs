@@ -1,0 +1,40 @@
+<%-include('nav', {user: user})%>
+
+  <div id="container">
+
+    <div class="container mt-5">
+
+      <% if(applicants) {%>
+
+        <h3 class="mb-3 mt-5 text-center">Applicants</h3>
+
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Contact</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% applicants.forEach( applicant=> { %>
+              <tr>
+                <th scope="row">
+                  <%= applicant.id %>
+                </th>
+                <td>
+                  <%= applicant.name %>
+                </td>
+                <td>
+                  <%= applicant.email %>
+                </td>
+                <td><a href="<%= applicant.resume %>" class="btn btn-primary">Resume</a></td>
+              </tr>
+              <% });%>
+          </tbody>
+        </table>
+        <% } %>
+    </div>
+
+  </div>

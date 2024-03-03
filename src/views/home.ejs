@@ -1,0 +1,93 @@
+<%-include('nav', {user: user}) %>
+    <div id="container">
+        <!-- Home Page -->
+
+        <div class="position-absolute row start-50 top-50 translate-middle">
+            <div class="col-sm-6">
+                <img class="img-fluid" src="/resources/logos/logo.png" alt="">
+            </div>
+
+            <div class="col-sm-6">
+                <h1 class="">A comprehensive platform for reliable</h1>
+                <h3 class="primary" id="typewriter"></h3>
+                <p>Get Discovered. Get Hired.</p>
+                <%if(user){%>
+                    <a type="button" href="/jobs" class="btn btn-primary btn-lg mt-3">I'm a Job Seeker</a>
+                 <%}else{%>
+                        <a type="button" href="/jobs" class="btn btn-primary btn-lg mt-3">I'm a Job Seeker</a>
+                        <button type="button" class="btn btn-primary btn-lg mt-3" data-bs-toggle="modal"
+                            data-bs-target="#login">I'm a Recruiter</button>
+                 <%}%>
+            </div>
+
+        </div>
+
+        <!-- Login Modal -->
+
+        <div class="modal fade" id="login" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Login</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/" method="post">
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email address</label>
+                                <input type="email" class="form-control" name="email" placeholder="Enter your email">
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" name="password" class="form-control"
+                                    placeholder="Enter your password">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <span> Don't have an account? &nbsp; &nbsp;<button type="button" class="btn btn-outline-success"
+                                data-bs-toggle="modal" data-bs-target="#register">Register</button> </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Register Modal -->
+
+        <div class="modal fade" id="register" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Register</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" action="/register">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" class="form-control" name="name" placeholder="Enter your name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email address</label>
+                                <input type="email" class="form-control" name="email" placeholder="Enter your email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label required>
+                                <input type="password" name="password" class="form-control"
+                                    placeholder="Enter your Password">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Register</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <span> Already have an account? &nbsp; &nbsp;<button type="button"
+                                class="btn btn-outline-success" data-bs-toggle="modal"
+                                data-bs-target="#login">Login</button></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>

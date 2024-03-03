@@ -1,0 +1,70 @@
+<%-include('nav', {user: user})%>
+
+    <div id="container">
+
+        <% if(locals.lastVisit){ %>
+            <div class="alert alert-primary mt-5" role="alert">
+                Your Last visit was on <%= locals.lastVisit %>
+            </div>
+            <% } %>
+
+
+                <!-- Job Listing Page -->
+
+                <div class="mt-5">
+
+
+                    <div class="container d-flex flex-wrap justify-content-evenly" id="joblist">
+
+                        <% jobs.forEach(job=> { %>
+
+                            <a class="jobs-card-link" href="/jobdetails/<%= job.id %>">
+
+                                <div class="card card-style clickable-card m-3">
+                                    <div class="card-header"><button type="button"
+                                            class="btn btn-sm tertiary-bg">Actively
+                                            Hiring
+                                            &nbsp;&nbsp;&nbsp;<i class="fa-solid fa-chart-line"></i></button></div>
+                                    <div class="card-body">
+                                        <h2 class="card-title primary-b prevent-overflow-head">
+                                            <%= job.cmpName %>
+                                        </h2>
+                                        <p class="card-text prevent-overflow">
+                                            <%= job.category %> <span class="text-primary">
+                                                    <%= job.designation %>
+                                                </span>
+                                        </p>
+                                        <p class="card-text prevent-overflow"><i
+                                                class="fa-solid fa-location-dot tertiary"></i>&nbsp;&nbsp;<%=
+                                                job.location %>
+                                        </p>
+                                        <p class="card-text prevent-overflow"><i
+                                                class="fa-solid fa-indian-rupee-sign tertiary"></i>&nbsp;&nbsp;<%=
+                                                job.salary %>
+                                        </p>
+                                        <div class="prevent-overflow-div">
+
+
+
+                                            <% job.skills.forEach( skill=> { %>
+                                                <button type="button" class="btn btn-sm primary-bg">
+                                                    <%= skill %>
+                                                </button>
+                                                <% }); %>
+
+
+                                        </div>
+                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                    </div>
+                                </div>
+
+                            </a>
+
+                            <% }); %>
+
+                    </div>
+
+                </div>
+
+
+    </div>
